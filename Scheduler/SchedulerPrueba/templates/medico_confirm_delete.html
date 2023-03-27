@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>¿Está seguro que desea eliminar al médico {{ object.nombre }}?</h1>
+    <form action="." method="post">
+      {% csrf_token %}
+      <input type="submit" class="btn btn-danger" value="Eliminar">
+      <a href="{% url 'medico_detail' object.pk %}" class="btn btn-default">Cancelar</a>
+    </form>
+  </div>
+{% endblock %}

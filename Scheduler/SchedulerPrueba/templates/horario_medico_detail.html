@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Detalle de horario médico</h1>
+  <p><strong>Médico:</strong> {{ object.medico }}</p>
+  <p><strong>Día de la semana:</strong> {{ object.get_dia_semana_display }}</p>
+  <p><strong>Hora de inicio:</strong> {{ object.hora_inicio }}</p>
+  <p><strong>Hora de fin:</strong> {{ object.hora_fin }}</p>
+  <a href="{% url 'horarios_medicos_update' medico.pk object.pk %}" class="btn btn-sm btn-outline-secondary me-2"><i class="bi bi-pencil">editar</i></a>
+  <a href="{% url 'horarios_medicos_delete' medico.pk object.pk %}" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash">eliminar</i></a>
+  <a href="{% url 'horarios_medicos_list' medico.pk %}" class="btn btn-secondary">Volver a la lista</a>
+{% endblock %}

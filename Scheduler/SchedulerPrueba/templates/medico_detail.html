@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ medico.nombre }}</h2>
+    <p><strong>Especialidad:</strong> {{ medico.especialidad }}</p>
+    <p><strong>Calendario:</strong> {{ medico.calendario }}</p>
+    <hr>
+    <h3>Turnos</h3>
+    {% if medico.turnos %}
+        <ul>
+            {% for turno in medico.turnos %}
+                <li>{{ turno.fecha }} - {{ turno.hora }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay turnos para este médico.</p>
+    {% endif %}
+{% endblock %}

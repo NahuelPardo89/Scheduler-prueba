@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>¿Está seguro de que desea eliminar el siguiente horario médico?</h1>
+  <p><strong>{{ object }}</strong></p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a href="{% url 'horarios_medicos_list' medico.pk %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+{% endblock %}

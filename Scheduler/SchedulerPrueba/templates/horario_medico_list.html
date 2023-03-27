@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Horarios médicos</h2>
+    <a href="{% url 'horarios_medicos_create' medico.pk %}" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Agregar horario</a>
+  </div>
+  {% if object_list %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Médico</th>
+        <th scope="col">Día de la semana</th>
+        <th scope="col">Horario</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for horario in object_list %}
+      <tr>
+        <td>{{ horario.medico }}</td>
+        <td>{{ horario.get_dia_semana_display }}</td>
+        <td>{{ horario.hora_inicio }} - {{ horario.hora_fin }}</td>
+        <td class="text-end">
+          <div class="d-flex justify-content-end">
+            <a href="{% url 'horarios_medicos_update' medico.pk horario.pk %}" class="btn btn-sm btn-outline-secondary me-2"><i class="bi bi-pencil">editar</i></a>
+            <a href="{% url 'horarios_medicos_delete' medico.pk horario.pk %}" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash">eliminar</i></a>
+            <a href="{% url 'horarios_medicos_detail' medico.pk horario.pk %}" class="btn btn-sm btn-outline-primary"><i class="bi bi-trash">detalle</i></a>
+          </div>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4">No se encontraron horarios médicos.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="alert alert-info" role="alert">
+    No se encontraron horarios médicos.
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

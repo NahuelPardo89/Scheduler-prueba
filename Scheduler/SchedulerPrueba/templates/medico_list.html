@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Lista de Médicos</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Especialidad</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for medico in object_list %}
+      <tr>
+        <td>{{ medico.nombre }}</td>
+        <td>{{ medico.especialidad }}</td>
+        <td>
+          <a href="{% url 'medico_detail' pk=medico.pk %}" class="btn btn-primary btn-sm">Detalles</a>
+          <a href="{% url 'medico_update' pk=medico.pk %}" class="btn btn-info btn-sm">Editar</a>
+          <a href="{% url 'medico_delete' pk=medico.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="3">No hay médicos disponibles.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'medico_create' %}" class="btn btn-success">Agregar médico</a>
+{% endblock %}
